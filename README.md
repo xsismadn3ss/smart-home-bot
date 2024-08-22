@@ -3,7 +3,7 @@
 Es proyecto muestra una forma de automatizar datos de un sensor usando raspberry, python y telegram para crear tareas automatizadas que se pueden ejecutar desde un Bot de Telegram desde el telefono.
 
 📝Tareas:
-<code>https://xsismadn3ss.notion.site/Raspberry-bot-da27bffc8495497b872b329aaaeb26bd?pvs=4</code>
+https://xsismadn3ss.notion.site/Raspberry-bot-da27bffc8495497b872b329aaaeb26bd?pvs=4
 
 
 
