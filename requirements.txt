@@ -1,2 +1,2 @@
-python-telegram
-Pillow
+telebot #manage telegram bots
+python-dotenv #load .env
