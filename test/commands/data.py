@@ -6,4 +6,4 @@ load_dotenv()
 BOT_TOKEN = os.getenv("TOKEN")
 bot = AsyncTeleBot(BOT_TOKEN)
 
-numbers = {}
+temp = {}
