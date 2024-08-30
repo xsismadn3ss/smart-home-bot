@@ -1,9 +1,9 @@
 print("loading commands")
 
-from .data import bot, numbers
+from .data import bot, temp
 from .description import help
 from .hour import send_time
-from .load_save_info import *
-from .repeat import repeat
+from .earnings import *
+# from .repeat import repeat
 
-print("Sucess 🎉")
+print("Success 🎉")
