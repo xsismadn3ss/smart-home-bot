@@ -1,8 +1,9 @@
 import os
 from dotenv import load_dotenv
-import telebot
+from telebot.async_telebot import AsyncTeleBot
+
 load_dotenv()
 BOT_TOKEN = os.getenv("TOKEN")
-bot = telebot.TeleBot(token=BOT_TOKEN)
+bot = AsyncTeleBot(BOT_TOKEN)
 
-numbers = []
+numbers = {}
