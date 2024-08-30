@@ -1,6 +1,6 @@
 # Bot de Telegram para monitoreo de humedad y temperatura
 
-Es proyecto muestra una forma de automatizar datos de un sensor usando raspberry, python y telegram para crear tareas automatizadas que se pueden ejecutar desde un Bot de Telegram desde el telefono.
+Este proyecto muestra una forma de automatizar datos de un sensor usando raspberry, python y telegram para crear tareas automatizadas que se pueden ejecutar desde un el teléfono por medio de un bot de telegram.
 
 📝Tareas:
 https://malachite-clock-422.notion.site/Smart-home-Raspberry-bot-d060d796ccdd4b58a55fde02253e6614?pvs=4
