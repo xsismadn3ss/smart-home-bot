@@ -1,2 +1,3 @@
-telebot #manage telegram bots
-python-dotenv #load .env
+telebot>=0.0.5 # manage telegram bots
+python-dotenv==1.0.1 # load .env
+asyncio==3.4.3 # run asncyc tasks
