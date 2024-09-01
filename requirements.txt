@@ -1,8 +1,4 @@
 telebot>=0.0.5 # manage telegram bots
 python-dotenv==1.0.1 # load .env
 asyncio==3.4.3 # run asncyc tasks
-<<<<<<< HEAD
-aiohttp>=3.10.5 # use async http comunication
-=======
 aiohttp>=3.10.5 # async http comunication
->>>>>>> 6a2f5bc276c3a54a29b4f9e0a5e54c28581605b0
