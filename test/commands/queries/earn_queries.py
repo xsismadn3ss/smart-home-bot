@@ -1,29 +1,25 @@
 import sqlite3
-import datetime
-
-
-def get_db_connection():
-    conn = sqlite3.connect("telebot.db")
-    return conn
+from .common_fx.wrap_input import wrap_input
+from .common_fx.current_time import current_time
+from .connection import get_db_connection
 
 
 async def insert(value: str) -> bool:
     conn = get_db_connection()
     cursor = conn.cursor()
-    data = value.split('|')
-    formatted_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    data = wrap_input(value)
+    formatted_date = current_time()
 
     try:
-        sqlcommand = (
-            f"INSERT INTO Earn (datetime, value, reason) VALUES ('{formatted_date}', '${data[0]}', '{data[1]}')"
-        )
+        sqlcommand = f"INSERT INTO Earn (datetime, value, reason) VALUES ('{formatted_date}', '${data[0]}', '{data[1]}')"
         cursor.execute(sqlcommand)
         conn.commit()
     except Exception as e:
         print(f"Error inserting data: {e}")
         return False
-
-    conn.close()
+    finally:
+        conn.close()
+        
     return True
 
 
