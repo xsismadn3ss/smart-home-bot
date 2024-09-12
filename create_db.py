@@ -15,6 +15,7 @@ sqlcommands = [
     value REAL NOT NULL,
     date DATETIME NPT NULL
 );""",
+    #graphics
     """CREATE TABLE Graphics (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     image_path TEXT NOT NULL,
