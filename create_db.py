@@ -1,3 +1,8 @@
+import sqlite3
+
+conn = sqlite3.connect('bot.db')
+cursor = conn.cursor()
+
 sqlcommands = [
     # user
     """CREATE TABLE User ( 
@@ -7,13 +12,15 @@ sqlcommands = [
 );""",
     # temperatur
     """CREATE TABLE Temperature (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     value REAL NOT NULL,
-    date DATETIME NOT NULTT
+    date DATETIME NOT NULL
 );""",
     # humidity
     """CREATE TABLE Humidity (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     value REAL NOT NULL,
-    date DATETIME NPT NULL
+    date DATETIME NOT NULL
 );""",
     #graphics
     """CREATE TABLE Graphics (
@@ -22,3 +29,8 @@ sqlcommands = [
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );""",
 ]
+
+for command in sqlcommands:
+    cursor.execute(command)
+conn.commit()
+conn.close()
