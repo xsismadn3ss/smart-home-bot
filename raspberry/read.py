@@ -1,10 +1,10 @@
 from .sensor_config import sensor, pin, Adafruit_DHT
 
 async def read_dht() -> tuple:
-    humidity, temperature = await Adafruit_DHT.read_retry(sensor, pin)
-    print(humidity, temperature)
-    return humidity, temperature
+    data = await Adafruit_DHT.read_retry(sensor, pin)
+    print(data)
+    return data
 
 async def get_status() -> str:
-    humidity, temperature = await read_dht()
-    return f"Humedad:{humidity:.1f}%\nTemperature: {temperature:.1f}"
+    data = await read_dht()
+    return f"Humedad:{data[0]:.1f}%\nTemperature: {data[1]:.1f}"
