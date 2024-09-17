@@ -4,4 +4,4 @@ from .bot_data import bot
 async def status(message):
     print("enviando status")
     state = "La temperatura actual es:...\nLa humedad actual es:..."
-    await bot.send_message(chat_id=message.chat_id, text=state)
+    await bot.send_message(chat_id=message.chat.id, text=state)
