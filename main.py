@@ -4,16 +4,24 @@ from src.bot_data import bot
 
 async def raspberry():
     while True:
-        await asyncio.sleep(2)
+        try:
+            await asyncio.sleep(1)
+            print("reading...")
+        except asyncio.CancelledError:
+            print("Lecutura de sensores finalizada")
+            break
 
 
 async def main():
     try:
         rasp_task = asyncio.create_task(raspberry())
-        asyncio.gather(rasp_task)
         await bot.polling()
+        # asyncio.gather(rasp_task)
     except KeyboardInterrupt:
-        print("Programa finalizado")
+        print("Bot finalizado")
+    finally:
+        rasp_task.cancel()
+        await rasp_task
 
 if __name__ == "__main__":
     print("Bot intialized 🤖")
