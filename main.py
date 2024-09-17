@@ -8,9 +8,12 @@ async def raspberry():
 
 
 async def main():
-    rasp_task = asyncio.create_task(raspberry())
-    asyncio.gather(rasp_task)
-    await bot.polling()
+    try:
+        rasp_task = asyncio.create_task(raspberry())
+        asyncio.gather(rasp_task)
+        await bot.polling()
+    except KeyboardInterrupt:
+        print("Programa finalizado")
 
 if __name__ == "__main__":
     print("Bot intialized 🤖")
