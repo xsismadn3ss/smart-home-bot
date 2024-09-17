@@ -1,5 +1,4 @@
 import asyncio
-import main
 from raspberry import read_dht
 
 async def raspi():
