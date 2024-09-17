@@ -8,7 +8,7 @@ async def raspberry():
             await asyncio.sleep(1)
             print("reading...")
         except asyncio.CancelledError:
-            print("Lecutura de sensores finalizada")
+            print("\nLecutura de sensores finalizada")
             break
 
 
@@ -25,4 +25,7 @@ async def main():
 
 if __name__ == "__main__":
     print("Bot intialized 🤖")
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("\nBot finalizado")
