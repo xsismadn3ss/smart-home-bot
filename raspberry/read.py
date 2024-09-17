@@ -2,6 +2,7 @@ from .sensor_config import sensor, pin, Adafruit_DHT
 
 async def read_dht() -> tuple:
     humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+    print("enviando datos")
     return humidity, temperature
 
 def get_status() -> str:
