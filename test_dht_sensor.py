@@ -1,20 +1,18 @@
-import asyncio
+import time
 from raspberry import read_dht
+# import Adafruit_DHT
 
-async def raspi():
-    while True:
-        humidity, temperature = read_dht()
+# sensor = Adafruit_DHT.DHT11
+# pin = 4
 
-        if humidity is not None and temperature is not None:
-            print(f'Humedad: {humidity:.1f}%\nTemperatura: {temperature:.1f}°C\n')
-            asyncio.sleep(0.5)
+while True:
+    # humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+    humidity, temperature = read_dht()
 
-        else:
-            print("Fallo al obtener lectura!")
-            break
+    if humidity is not None and temperature is not None:
+        print(f'Humedad: {humidity:.1f}%\nTemperatura: {temperature:.1f}°C\n')
 
-async def main():
-    raspi_task = asyncio.create_task(raspi())
+    else:
+        print("Fallo al obtener lectura!")
 
-if __name__ == "__main__":
-    asyncio.run(main())
+    time.sleep(0.5)
