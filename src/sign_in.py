@@ -1,6 +1,6 @@
 from .bot_data import bot, temp
 import asyncio
-from fx.reset_temp import reset_temp
+from .fx.reset_temp import reset_temp
 
 
 @bot.message_handler(commands=["sign_in"])
