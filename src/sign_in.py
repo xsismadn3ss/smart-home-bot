@@ -19,9 +19,9 @@ async def sign_in_form(message):
     test = message.text
     if test == test_password:
         await bot.delete_message(chat_id=chatid, message_id=temp["msgid"])
-        await bot.delete_message(chat_id=chatid, message_id=(temp["msgid"] -1))
+        await bot.delete_message(chat_id=chatid, message_id=(temp["msgid"]  + 1))
         await bot.send_message(chatid, "Bienvenido")
     else:
         await bot.send_message(chatid, "Contraseña incorrecta")
         await bot.delete_message(chat_id=chatid, message_id=temp["msgid"])
-        await bot.delete_message(chat_id=chatid, message_id=(temp["msgid"] -1))
+        await bot.delete_message(chat_id=chatid, message_id=(temp["msgid"] + 1))
