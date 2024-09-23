@@ -8,6 +8,7 @@ sqlcommands = [
     """CREATE TABLE User ( 
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT NOT NULL UNIQUE,
+    chat_id INTEGER NOT NULL UNIQUE,
     password TEXT NOT NULL
 );""",
     # temperatur
