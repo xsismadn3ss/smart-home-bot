@@ -8,4 +8,4 @@ async def read_dht() -> tuple:
 
 async def get_status() -> str:
     humidity, temperature = await read_dht()
-    return f"Humedad:{humidity:.1f}%\nTemperature: {temperature:.1f}"
+    return f"Humedad: {humidity:.1f}% 💧\nTemperature: {temperature:.1f} 🌡️"
