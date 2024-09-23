@@ -21,7 +21,7 @@ async def sign_in_form(message):
     print(type(message))
     test_password = "1234"
     test = message.text
-    reset_temp(chatid)
+    await reset_temp(chatid)
 
     if test == test_password:
         await bot.send_message(chatid, "Bienvenido")
