@@ -2,7 +2,7 @@ import asyncio
 from .sensor_config import sensor, pin, Adafruit_DHT
 
 async def read_dht() -> tuple:
-    asyncio.sleep(0.1)
+    await asyncio.sleep(0.5)
     humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
     return humidity, temperature
 
