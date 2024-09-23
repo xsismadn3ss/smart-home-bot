@@ -4,7 +4,9 @@ from .bot_data import bot, temp
 async def sign_in(message):
     print("sign in...")
     chatid = message.chat.id
+    msgid = message.message_id
     temp[chatid] = "login"
+    temp["msgid"] = msgid
     print(chatid, type(chatid))
     await bot.reply_to(message,"Ingrese la contraseña del bot")
 
@@ -16,6 +18,10 @@ async def sign_in_form(message):
     test_password = "1234"
     test = message.text
     if test == test_password:
+        await bot.delete_message(chat_id=chatid, message_id=temp["msgid"])
+        await bot.delete_message(chat_id=chatid, message_id=(temp["msgid"] -1))
         await bot.send_message(chatid, "Bienvenido")
     else:
         await bot.send_message(chatid, "Contraseña incorrecta")
+        await bot.delete_message(chat_id=chatid, message_id=temp["msgid"])
+        await bot.delete_message(chat_id=chatid, message_id=(temp["msgid"] -1))
