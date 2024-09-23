@@ -1,5 +1,6 @@
 from .bot_data import bot, temp
 import asyncio
+from fx.reset_temp import reset_temp
 
 @bot.message_handler(commands=["sign_in"])
 async def sign_in(message):
@@ -14,10 +15,13 @@ async def sign_in(message):
 
 @bot.message_handler(func=lambda message: temp.get(message.chat.id) == "login")
 async def sign_in_form(message):
+    
     chatid = message.chat.id
     print(type(message))
     test_password = "1234"
     test = message.text
+    reset_temp()
+
     if test == test_password:
         await bot.send_message(chatid, "Bienvenido")
         await asyncio.sleep(0.2)
