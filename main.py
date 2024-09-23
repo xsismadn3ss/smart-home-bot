@@ -1,13 +1,13 @@
 import asyncio
 from src import *
 from src.bot_data import bot
-from raspberry.read import get_status
+from raspberry.read import read_dht
 
 async def raspberry():
     print("Leyendo sensores...")
     while True:
         try:
-            data =await get_status()
+            data = await read_dht()
             print(data)
         except asyncio.CancelledError:
             print("\nLecutura de sensores finalizada")
