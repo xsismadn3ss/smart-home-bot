@@ -9,7 +9,7 @@ async def raspberry():
         try:
             data =await get_status()
             print(data)
-        except asyncio.CancelledError:
+        except asyncio.CancelledError or KeyboardInterrupt:
             print("\nLecutura de sensores finalizada")
             break
 
