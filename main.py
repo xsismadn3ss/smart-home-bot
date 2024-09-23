@@ -7,9 +7,8 @@ async def raspberry():
     print("Leyendo sensores...")
     while True:
         try:
-            print("leyendo datos...")
-            # data =await get_status()
-            # print(data)
+            data =await get_status()
+            print(data)
         except asyncio.CancelledError:
             print("\nLecutura de sensores finalizada")
             break
