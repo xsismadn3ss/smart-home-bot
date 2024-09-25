@@ -24,3 +24,7 @@ class Humidity:
     id: int
     value: int
     date: datetime
+
+    @property
+    def time(self):
+        return f"{self.date.hour}:{self.date.minute}:{self.date.second}"

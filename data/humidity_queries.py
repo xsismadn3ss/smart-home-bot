@@ -50,8 +50,8 @@ def get_max(humidities):
 
 
 def get_chart(humidities: list[Humidity], filename):
-    dates = [temp.time for temp in humidities]
-    values = [temp.value for temp in humidities]
+    dates = [h.time for h in humidities]
+    values = [h.value for h in humidities]
 
     plt.figure(figsize=(10, 5))
     plt.plot(dates, values, marker="o", linestyle="-", color="red", label="Humedad")
