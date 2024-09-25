@@ -4,7 +4,11 @@ Este proyecto muestra una forma de automatizar datos de un sensor usando raspber
 
 Ver [tareas en Notion](https://malachite-clock-422.notion.site/Smart-home-Raspberry-bot-d060d796ccdd4b58a55fde02253e6614?pvs=74)
 
-
+# Configuración de raspberry
+Se necesita un paquete linux llamado OpenBLAS para trabajar con numpy y crear las gráficas. Ejecuta el siguiente el comando para instalar el paquete:
+```bash
+sudo apt-get install libopenblas-dev
+```
 
 # Lista de comandos
 
