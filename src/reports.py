@@ -1,15 +1,15 @@
-from src.fx import check_login
+from src.fx.check_login import login_required
 from .bot_data import bot
 from src.fx import handle_charts
 
 
 @bot.message_handler(commands=["reports"])
-# @check_login
+@login_required
 async def reports(message):
-    h = handle_charts.h_chart()
+    h = handle_charts.h_chart(message)
 
     if h is not None:
-        handle_charts.send_chart(h)
+        handle_charts.send_chart(h, message)
 
     else:
         await bot.send_message(
