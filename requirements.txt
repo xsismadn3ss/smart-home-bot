@@ -4,3 +4,4 @@ asyncio==3.4.3 # run asncyc tasks
 aiohttp>=3.10.5 # async http comunication
 matplotlib==3.9.2 #generate images
 Adafruit_Python_DHT
+aiosqlite==0.20.0
