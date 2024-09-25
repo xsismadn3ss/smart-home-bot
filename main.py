@@ -12,10 +12,10 @@ async def raspberry():
             print("guardando datos: {}%, {}°C".format(data[0], data[1]))
             humidity_queries.insert(data[0])
             temperature_queries.insert(data[1])
-            asyncio.sleep(4.5) 
+            await asyncio.sleep(4.5) 
 
         except Exception as e:
-            print("Un error ha ocurrido: ",e)
+            print(e)
             print("\nLecutura de sensores finalizada o sensor no conectado")
             break
 
