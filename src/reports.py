@@ -4,7 +4,7 @@ from src.fx import handle_charts
 
 
 @bot.message_handler(commands=["reports"])
-@check_login
+# @check_login
 async def reports(message):
     h = handle_charts.h_chart()
 
