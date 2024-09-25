@@ -1,15 +1,15 @@
 import asyncio
 from src import *
 from src.bot_data import bot
-from raspberry.read import get_status
+from raspberry.read import read_dht
 from data import humidity_queries, temperature_queries
 
 async def raspberry():
     print("Leyendo sensores...")
     while True:
         try:
-            data = await get_status()
-            print(f"guardando datos: {data[0]}%, {data[1]}°C")
+            h, t = await get_status()
+            print(f"guardando datos: {h}%, {t}°C")
             # await humidity_queries.insert(data[0])
             # await temperature_queries.insert(data[1])
             await asyncio.sleep(2.5) 
