@@ -12,7 +12,7 @@ async def raspberry():
             h, t = await get_status()
             if i == 2:
                 print("guardando datos, reiniciando contador...")
-                humidity_queries.insert(h)
+                humidity_queries.insert("Un error ha ocurrido: ", h)
                 temperature_queries.insert(t)
                 i = 0
 
