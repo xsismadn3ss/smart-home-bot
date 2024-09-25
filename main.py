@@ -8,9 +8,7 @@ async def raspberry():
     print("Leyendo sensores...")
     while True:
         try:
-            data = await get_status()
-            h = data[0]
-            t = data[1]
+            h, t = await read_dht()
             print(f"guardando datos: {h}%, {t}°C")
             # await humidity_queries.insert(data[0])
             # await temperature_queries.insert(data[1])
