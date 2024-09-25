@@ -5,19 +5,20 @@ from datetime import datetime
 
 async def send_chart(path, message):
     print("accediendo a imagen")
-    if os.path.isfile(path):
+    file = f"../../{path}"
+    if os.path.isfile(file):
         print("imagen encontrada")
-        with open(path, "rb") as photo:
+        with open(file, "rb") as photo:
             print("imagen")
             await bot.send_photo(message.chat.id, photo)
-            os.remove(path=path)
+            os.remove(path=file)
     else:
         print("no se pudo encontrar")
 
 
 async def h_chart(message):
     data = await humidity_queries.get_from_today()
-    print("analizando datos de temperatura")
+    print("analizando datos de humedad")
 
     if data is not None:
         dt = datetime.now()
