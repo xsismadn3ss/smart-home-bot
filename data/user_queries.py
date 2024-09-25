@@ -1,6 +1,6 @@
 from data.functions.db_session import query
 from data.models import User
-from sqlite3 import Connection, Cursor
+from aiosqlite import Connection, Cursor
 
 
 def serialize(users):
@@ -17,22 +17,22 @@ def serialize(users):
 
 
 @query
-def insert(conn: Connection, cursor: Cursor, chat_id):
+async def insert(conn: Connection, cursor: Cursor, chat_id):
     sql_command = "INSERT INTO User(chat_id) values (?)"
-    cursor.execute(sql_command, (chat_id,))
+    await cursor.execute(sql_command, (chat_id,))
 
 
 @query
-def get_all(conn: Connection, cursor: Cursor):
+async def get_all(conn: Connection, cursor: Cursor):
     sql_command = "SELECT * FROM User"
-    cursor.execute(sql_command)
-    data = cursor.fetchall()
+    await cursor.execute(sql_command)
+    data = await cursor.fetchall()
     return serialize(data)
 
 
 @query
-def get(conn: Connection, cursor: Cursor, chat_id):
+async def get(conn: Connection, cursor: Cursor, chat_id):
     sql_command = "SELECT * FROM User WHERE chat_id = ?"
-    cursor.execute(sql_command, (chat_id,))
-    data = cursor.fetchone()
+    await cursor.execute(sql_command, (chat_id,))
+    data = await cursor.fetchone()
     return serialize(data)

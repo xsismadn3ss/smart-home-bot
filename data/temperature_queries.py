@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlite3 import Cursor
+from aiosqlite import Cursor
 from data.functions.db_session import query
 import matplotlib.pyplot as plt
 from data.models import Temperature
@@ -22,30 +22,30 @@ def serialize(mesures: list[tuple] | tuple):
 
 
 @query
-def insert(conn, cursor: Cursor, value):
+async def insert(conn, cursor: Cursor, value):
     sqlcommnad = "INSERT INTO Temperature (value, date) values (?, ?)"
     current_time = datetime.now().isoformat()
-    cursor.execute(sqlcommnad, (value, current_time))
+    await cursor.execute(sqlcommnad, (value, current_time))
 
 
 @query
-def get_all(conn, cursor: Cursor):
+async def get_all(conn, cursor: Cursor):
     sqlcommand = "SELECT * FROM Temperature"
-    cursor.execute(sqlcommand)
-    data = cursor.fetchall()
+    await cursor.execute(sqlcommand)
+    data = await cursor.fetchall()
     return serialize(data)
 
 
 @query
-def get_from_today(conn, cursor: Cursor):
+async def get_from_today(conn, cursor: Cursor):
     sqlcommand = "SELECT * FROM Temperature WHERE date(date) = date('now')"
-    cursor.execute(sqlcommand)
-    data = cursor.fetchall()
+    await cursor.execute(sqlcommand)
+    data = await cursor.fetchall()
     return serialize(data)
 
 
-def get_max(temperatures):
-    max_temperature = max(temperatures, key=lambda t: t.value)
+async def get_max(temperatures):
+    max_temperature = await max(temperatures, key=lambda t: t.value)
     return max_temperature
 
 

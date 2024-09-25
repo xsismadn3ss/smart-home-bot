@@ -22,25 +22,25 @@ def serialize(mesures: list[tuple] | tuple):
 
 
 @query
-def insert(conn, cursor: Cursor, value):
+async def insert(conn, cursor: Cursor, value):
     sqlcommnad = "INSERT INTO Humidity (value, date) values (?, ?)"
     current_time = datetime.now().isoformat()
-    cursor.execute(sqlcommnad, (value, current_time))
+    await cursor.execute(sqlcommnad, (value, current_time))
 
 
 @query
-def get_all(conn, cursor: Cursor):
+async def get_all(conn, cursor: Cursor):
     sqlcommand = "SELECT * FROM Humidity"
-    cursor.execute(sqlcommand)
-    data = cursor.fetchall()
+    await cursor.execute(sqlcommand)
+    data = await cursor.fetchall()
     return serialize(data)
 
 
 @query
-def get_from_today(conn, cursor: Cursor):
+async def get_from_today(conn, cursor: Cursor):
     sqlcommand = "SELECT * FROM Humidity WHERE date(date) = date('now')"
-    cursor.execute(sqlcommand)
-    data = cursor.fetchall()
+    await cursor.execute(sqlcommand)
+    data = await cursor.fetchall()
     return serialize(data)
 
 

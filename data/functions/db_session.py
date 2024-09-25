@@ -1,26 +1,15 @@
+from ast import arg
+from functools import wraps
 import sqlite3
-
-
-def get_conection():
-    path = "bot.db"
-    conn = sqlite3.connect(path)
-    return conn
-
+import aiosqlite
 
 def query(func):
-    def wrapper(*args, **kwargs):
-        print("Executing query")
-        conn = get_conection()
-        cursor = conn.cursor()
-        try:
-            result = func(conn, cursor, *args, **kwargs)
-            conn.commit()
-
-        except Exception as e:
-            conn.rollback()
-            raise e
-        finally:
-            conn.close()
+    @wraps(func)
+    async def wrapper(*args, **kwargs):
+        async with aiosqlite.connect("bot.db") as conn:
+            cursor = await conn.cursor()
+            result = await func(conn, cursor, *args, **kwargs)
+            await conn.commit()
+            await conn.close()
         return result
-
     return wrapper
