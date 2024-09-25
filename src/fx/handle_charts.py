@@ -11,14 +11,29 @@ async def send_chart(path, message):
         await bot.send_photo(message.chat.id, photo)
         os.remove(path=path)
 
+def create_path(title):
+    dt = datetime.now()
+    path = f"{title}_{dt.year}_{dt.month}_{dt.day}_{dt.hour}{dt.minute}{dt.second}.png"
+    return path
+
 async def h_chart(message):
     data = await humidity_queries.get_from_today()
     print("analizando datos de humedad")
 
     if data is not None:
-        dt = datetime.now()
-        path = f"h_{dt.year}_{dt.month}_{dt.day}_{dt.hour}{dt.minute}{dt.second}.png"
+        path = create_path("h")
         humidity_queries.get_chart(humidities=data, filename=path)
+        return path
+    else:
+        return None
+
+async def t_chart(message):
+    data = await temperature_queries.get_from_today()
+    print("analizando datos de temperatura")
+
+    if data is not None:
+        path = create_path("t")
+        temperature_queries.get_chart(temperatures=data, filename=path)
         return path
     else:
         return None
