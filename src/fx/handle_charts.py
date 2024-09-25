@@ -5,6 +5,7 @@ from datetime import datetime
 
 async def send_chart(path, message):
     print("accediendo a imagen")
+    print(os.getcwd())
     if os.path.isfile(path):
         print("imagen encontrada")
         with open(path, "rb") as photo:
@@ -21,7 +22,7 @@ async def h_chart(message):
 
     if data is not None:
         dt = datetime.now()
-        path = f"assets/h_{dt.year}_{dt.month}_{dt.day}_{dt.hour}{dt.minute}{dt.second}"
+        path = f"h_{dt.year}_{dt.month}_{dt.day}_{dt.hour}{dt.minute}{dt.second}"
         humidity_queries.get_chart(humidities=data, filename=path)
         return path
     else:
