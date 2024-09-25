@@ -16,8 +16,9 @@ async def raspberry():
                 temperature_queries.insert(t)
                 i = 0
 
-        except asyncio.CancelledError or KeyboardInterrupt:
-            print("\nLecutura de sensores finalizada")
+        except Exception as e:
+            print(e)
+            print("\nLecutura de sensores finalizada o sensor no conectado")
             break
 
         asyncio.sleep(4.5)
