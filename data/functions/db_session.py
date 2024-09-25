@@ -1,6 +1,5 @@
-from ast import arg
 from functools import wraps
-import sqlite3
+import aiosqlite
 import aiosqlite
 
 def query(func):
