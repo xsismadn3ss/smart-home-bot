@@ -10,8 +10,8 @@ async def raspberry():
         try:
             data = await get_status()
             print("guardando datos: {}%, {}°C".format(data[0], data[1]))
-            humidity_queries.insert(data[0])
-            temperature_queries.insert(data[1])
+            await humidity_queries.insert(data[0])
+            await temperature_queries.insert(data[1])
             await asyncio.sleep(4.5) 
 
         except Exception as e:
