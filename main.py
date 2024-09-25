@@ -9,7 +9,7 @@ async def raspberry():
     while True:
         try:
             data = await get_status()
-            print("guardando datos: {}%, {}°C".format(data[0], data[1]))
+            print(f"guardando datos: {data[0]}%, {data[1]}°C")
             await humidity_queries.insert(data[0])
             await temperature_queries.insert(data[1])
             await asyncio.sleep(4.5) 
