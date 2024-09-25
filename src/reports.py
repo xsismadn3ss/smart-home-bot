@@ -6,10 +6,16 @@ from src.fx import handle_charts
 @bot.message_handler(commands=["reports"])
 @login_required
 async def reports(message):
-    h = await handle_charts.h_chart(message)
+    h = await handle_charts.h_chart()
+    t = await handle_charts.t_chart()
+    chatid = message.chat.id
 
     if h is not None:
+        bot.send_message(chatid, "Grafica de humedad")
         await handle_charts.send_chart(h, message)
+    if t is not None:
+        bot.send_message(chatid, "Grafica de temperatura")
+        await handle_charts.send_chart(t, message)
 
     else:
         await bot.send_message(

@@ -16,7 +16,7 @@ def create_path(title):
     path = f"{title}_{dt.year}_{dt.month}_{dt.day}_{dt.hour}{dt.minute}{dt.second}.png"
     return path
 
-async def h_chart(message):
+async def h_chart():
     data = await humidity_queries.get_from_today()
     print("analizando datos de humedad")
 
@@ -27,7 +27,7 @@ async def h_chart(message):
     else:
         return None
 
-async def t_chart(message):
+async def t_chart():
     data = await temperature_queries.get_from_today()
     print("analizando datos de temperatura")
 
