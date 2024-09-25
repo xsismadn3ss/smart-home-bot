@@ -9,7 +9,7 @@ def check_register(func):
     @wraps(func)
     async def wrapper(message, *args, **kwargs):
         chatid = message.chat.id
-        user = user_queries.get(chat_id=chatid)
+        user =await user_queries.get(chat_id=chatid)
 
         if user is not None:
             await bot.send_message(chatid, "Ya estas registrado")
