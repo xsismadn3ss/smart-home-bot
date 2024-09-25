@@ -2,6 +2,6 @@ telebot>=0.0.5 # manage telegram bots
 python-dotenv==1.0.1 # load .env
 asyncio==3.4.3 # run asncyc tasks
 aiohttp>=3.10.5 # async http comunication
-matplotlib==3.9.2 #generate images
-Adafruit_Python_DHT
-aiosqlite==0.20.0
+matplotlib==3.9.2 # generate images
+aiosqlite==0.20.0 # sqlite async
+Adafruit_Python_DHT # handle DHT sensor 
