@@ -6,7 +6,7 @@ def login_required(func):
     @wraps(func)
     async def wrapper(message, *args, **kwargs):
         chatid = message.chat.id
-        user = user_queries.get(chat_id=chatid)
+        user = await user_queries.get(chat_id=chatid)
 
         if user is None:
             await bot.send_message(chatid, "Necesitas iniciar sesión...")
