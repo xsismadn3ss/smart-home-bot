@@ -6,17 +6,32 @@ from data import humidity_queries, temperature_queries
 
 async def raspberry():
     print("Leyendo sensores...")
+    i = 0
+    h_list = []
+    t_list = []
     while True:
         try:
             h, t = await read_dht()
             print(f"status: {h}%, {t}°C")
-            await humidity_queries.insert(h)
-            await temperature_queries.insert(t)
-            await asyncio.sleep(2.5) 
+            t_list.append(t)
+            h_list.append(t)
+
+            if i == 30:
+                print("creando promedio y guardando")
+                print(t_list)
+                t_avg = sum(t_list) / len(t_list)
+                t_list = []
+                i = 0
+
+                await humidity_queries.insert(t_avg)
+                await temperature_queries.insert(t)
+
 
         except Exception as e:
             print(e)
             break
+
+        i += 1
 
 
 async def main():
