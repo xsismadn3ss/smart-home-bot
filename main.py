@@ -9,14 +9,13 @@ async def raspberry():
     while True:
         try:
             h, t = await read_dht()
-            print(f"guardando datos: {h}%, {t}°C")
-            # await humidity_queries.insert(data[0])
-            # await temperature_queries.insert(data[1])
+            print(f"status: {h}%, {t}°C")
+            await humidity_queries.insert(h)
+            await temperature_queries.insert(t)
             await asyncio.sleep(2.5) 
 
         except Exception as e:
             print(e)
-            print("\nLecutura de sensores finalizada o sensor no conectado")
             break
 
 
