@@ -1,37 +1,43 @@
 import sqlite3
 
-conn = sqlite3.connect('bot.db')
+conn = sqlite3.connect("bot.db")
 cursor = conn.cursor()
 
-sqlcommands = [
+sqlcommands: dict = {
     # user
-    """CREATE TABLE User ( 
+    "User": """CREATE TABLE User ( 
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT NOT NULL UNIQUE,
-    chat_id INTEGER NOT NULL UNIQUE,
-    password TEXT NOT NULL
+    chat_id INTEGER NOT NULL UNIQUE
 );""",
-    # temperatur
-    """CREATE TABLE Temperature (
+    # temperature
+    "Temperature": """CREATE TABLE Temperature (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     value REAL NOT NULL,
     date DATETIME NOT NULL
 );""",
     # humidity
-    """CREATE TABLE Humidity (
+    "Humidity": """CREATE TABLE Humidity (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     value REAL NOT NULL,
     date DATETIME NOT NULL
 );""",
-    #graphics
-    """CREATE TABLE Graphics (
+    # daily averages
+    "Daily_Avergages": """CREATE TABLE Daily_Averages (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    image_path TEXT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    avg_temperature REAL NOT NULL,
+    avg_humidity REAL NOT NULL,
+    date DATE NOT NULL UNIQUE
 );""",
-]
+}
+
 
 for command in sqlcommands:
-    cursor.execute(command)
+    try:
+        cursor.execute(sqlcommands[command])
+        print(f"Creating {command}")
+
+    except Exception:
+        print(f"{command} is already created")
+
 conn.commit()
 conn.close()
