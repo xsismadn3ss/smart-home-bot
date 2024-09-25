@@ -5,16 +5,12 @@ from datetime import datetime
 
 async def send_chart(path, message):
     print("accediendo a imagen")
-    print(os.getcwd())
-    if os.path.isfile(path):
-        print("imagen encontrada")
-        with open(path, "rb") as photo:
-            print("imagen")
-            await bot.send_photo(message.chat.id, photo)
-            os.remove(path=path)
-    else:
-        print("no se pudo encontrar")
+    path = "/{}".format(path)
 
+    with open(path, "rb") as photo:
+        print("imagen")
+        await bot.send_photo(message.chat.id, photo)
+        os.remove(path=path)
 
 async def h_chart(message):
     data = await humidity_queries.get_from_today()
