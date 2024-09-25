@@ -7,17 +7,17 @@ from data import humidity_queries, temperature_queries
 async def raspberry():
     print("Leyendo sensores...")
     while True:
-        try:
-            h, t = await get_status()
-            print(h,t)
-            print("guardando datos, reiniciando contador...")
-            humidity_queries.insert("Un error ha ocurrido: ", h)
-            temperature_queries.insert(t)
+        # try:
+        h, t = await get_status()
+        print(h,t)
+        print("guardando datos, reiniciando contador...")
+        humidity_queries.insert("Un error ha ocurrido: ", h)
+        temperature_queries.insert(t)
 
-        except Exception as e:
-            print(e)
-            print("\nLecutura de sensores finalizada o sensor no conectado")
-            break
+        # except Exception as e:
+        #     print(e)
+        #     print("\nLecutura de sensores finalizada o sensor no conectado")
+        #     break
 
         asyncio.sleep(4.5)
 
