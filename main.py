@@ -16,7 +16,7 @@ async def raspberry():
             t_list.append(t)
             h_list.append(h)
 
-            if i == 30:
+            if i == 5:
                 print("creando promedio y guardando")
                 print(t_list)
                 t_avg = sum(t_list) / len(t_list)
