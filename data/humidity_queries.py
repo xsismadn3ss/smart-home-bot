@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from data.models import Humidity
 
 
-def serialize(mesures: list[tuple] | tuple):
+def serialize(mesures):
     if mesures is None:
         return None
 
