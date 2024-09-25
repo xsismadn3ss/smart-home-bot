@@ -11,10 +11,10 @@ async def reports(message):
     chatid = message.chat.id
 
     if h is not None:
-        bot.send_message(chatid, "Grafica de humedad")
+        await bot.send_message(chatid, "Grafica de humedad")
         await handle_charts.send_chart(h, message)
     if t is not None:
-        bot.send_message(chatid, "Grafica de temperatura")
+        await bot.send_message(chatid, "Grafica de temperatura")
         await handle_charts.send_chart(t, message)
 
     else:
