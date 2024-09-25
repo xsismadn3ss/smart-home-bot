@@ -14,7 +14,7 @@ async def raspberry():
             h, t = await read_dht()
             print(f"status: {h}%, {t}°C")
             t_list.append(t)
-            h_list.append(t)
+            h_list.append(h)
 
             if i == 30:
                 print("creando promedio y guardando")
@@ -24,7 +24,7 @@ async def raspberry():
                 i = 0
 
                 await humidity_queries.insert(t_avg)
-                await temperature_queries.insert(t)
+                # await temperature_queries.insert(t)
 
 
         except Exception as e:
