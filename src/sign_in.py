@@ -1,5 +1,4 @@
 import os
-import asyncio
 from data import user_queries
 from .bot_data import bot, temp
 from .fx.reset_temp import reset_temp
@@ -41,7 +40,7 @@ async def sign_in_form(message):
     await reset_temp(chatid)
 
     if test == password:
-        user_queries.insert(chat_id=chatid)
+        await user_queries.insert(chat_id=chatid)
         await bot.send_message(chatid, "Bienvenido")
         await bot.delete_message(chat_id=chatid, message_id=temp["msgid"] + 1)
         await bot.delete_message(chat_id=chatid, message_id=(temp["msgid"] + 2))
