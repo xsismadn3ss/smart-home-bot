@@ -23,7 +23,7 @@ async def raspberry():
                 t_list = []
                 i = 0
 
-                await humidity_queries.insert(t_avg)
+                await temperature_queries.insert(t_avg)
                 # await temperature_queries.insert(t)
 
 
