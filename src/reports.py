@@ -6,10 +6,10 @@ from src.fx import handle_charts
 @bot.message_handler(commands=["reports"])
 @login_required
 async def reports(message):
-    h = handle_charts.h_chart(message)
+    h = await handle_charts.h_chart(message)
 
     if h is not None:
-        handle_charts.send_chart(h, message)
+        await handle_charts.send_chart(h, message)
 
     else:
         await bot.send_message(
