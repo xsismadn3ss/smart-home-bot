@@ -1,6 +1,6 @@
-from src.fx.check_login import login_required
+from bot.fx.check_login import login_required
 from .bot_data import bot
-from src.fx import handle_charts
+from bot.fx import handle_charts
 
 
 @bot.message_handler(commands=["reports"])

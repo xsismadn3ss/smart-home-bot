@@ -1,6 +1,6 @@
 import asyncio
-from src import *
-from src.bot_data import bot
+from bot import *
+from bot.bot_data import bot
 from raspberry.read import read_dht
 from data import humidity_queries, temperature_queries
 

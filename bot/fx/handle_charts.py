@@ -1,5 +1,5 @@
 import os
-from src.bot_data import bot
+from bot.bot_data import bot
 from data import humidity_queries, temperature_queries
 from datetime import datetime
 

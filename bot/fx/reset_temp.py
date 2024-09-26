@@ -1,4 +1,4 @@
-from src.bot_data import temp
+from bot.bot_data import temp
 
 async def reset_temp(chatid):
    temp[chatid] = ""

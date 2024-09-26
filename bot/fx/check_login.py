@@ -1,5 +1,5 @@
 from data import user_queries
-from src.bot_data import bot
+from bot.bot_data import bot
 from functools import wraps
 
 def login_required(func):

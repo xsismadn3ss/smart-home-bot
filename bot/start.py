@@ -1,4 +1,4 @@
-from src.fx.check_login import login_required
+from bot.fx.check_login import login_required
 from .bot_data import bot
 
 @bot.message_handler(commands=["start"])
