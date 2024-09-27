@@ -1,8 +1,7 @@
 import asyncio
 from bot import *
 from bot.bot_data import bot
-from raspberry.read import read_dht
-from data import humidity_queries, temperature_queries
+from raspberry import *
 
 async def raspberry():
     print("Leyendo sensores...")
@@ -18,14 +17,7 @@ async def raspberry():
 
             if i == 5:
                 print("creando promedio y guardando")
-                print(t_list)
-                t_avg = sum(t_list) / len(t_list)
-                t_list = []
-                i = 0
-
-                await temperature_queries.insert(t_avg)
-                # await temperature_queries.insert(t)
-
+                save_data(h_list, t_list)
 
         except Exception as e:
             print(e)
