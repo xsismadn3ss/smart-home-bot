@@ -68,6 +68,6 @@ async def generateReports(time: datetime):
             await send_t_report(user.chat_id, t_chart, max_t, min_t)
 
         # update config status
-        report_state(True)
+        await report_state(True)
 
-    report_state(False)
+    await report_state(False)
