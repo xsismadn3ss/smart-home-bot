@@ -46,32 +46,37 @@ async def report_state(state: bool) -> None:
     with open(config_path, "w") as f:
         json.dump(data, f, indent=4)
 
+async def send_reports():
+    # load data
+    h_data = await humidity_queries.get_from_today()
+    t_data = await temperature_queries.get_from_today()
+
+    # create reports
+    h_chart, max_h, min_h = await humidity_report(h_data=h_data)
+    t_chart, max_t, min_t = await temperature_report(t_data=t_data)
+
+    # load user
+    users: list[User] = await user_queries.get_all()
+
+    # send reports
+    for user in users:
+        await send_h_report(user.chat_id, h_chart, max_h.value, min_h.value)
+        await bot.send_message(user.chat_id, "---------------")
+        await send_t_report(user.chat_id, t_chart, max_t.value, min_t.value)
+
 
 async def generateReports(time: datetime):
     """send reports tu users automatically"""
     data = await load_config()
-    if (
-        (time.hour >= 4 and time.hour <= 6) or (time.hour >= 11 and time.hour <= 14)
-    ) and data["status"]["reports_sent"] == False:
-        # load data
-        h_data = await humidity_queries.get_from_today()
-        t_data = await temperature_queries.get_from_today()
-
-        # create reports
-        h_chart, max_h, min_h = await humidity_report(h_data=h_data)
-        t_chart, max_t, min_t = await temperature_report(t_data=t_data)
-
-        # load user
-        users: list[User] = await user_queries.get_all()
-
-        # send reports
-        for user in users:
-            await send_h_report(user.chat_id, h_chart, max_h.value, min_h.value)
-            await bot.send_message(user.chat_id, "---------------")
-            await send_t_report(user.chat_id, t_chart, max_t.value, min_t.value)
-
-        # update config status
+    status = data["status"]["reports_sent"]
+    
+    if time.hour >= 3 and time.hour <= 5 and status == False:
+        await send_reports()
         await report_state(True)
+    
+    elif time.hour >= 11 and time.hour <= 14 and status == False:
+        await send_reports()
+        await report_state(True)    
 
     else:
         await report_state(False)
