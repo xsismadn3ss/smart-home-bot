@@ -15,13 +15,14 @@ async def raspberry():
     while True:
         time = datetime.now()
         print("Hora actual: {}:{}:{}".format(time.hour, time.minute, time.second))
+        await generateReports(time)
+        
         try:
             h, t = await read_dht()
             t_list.append(t)
             h_list.append(h)
             if i == 20:
                 h_list, t_list, i = await save_data(h_list, t_list, i)
-            generateReports(time)
 
         except Exception as e:
             print(e)
