@@ -55,11 +55,11 @@ async def get_from_today(conn, cursor: Cursor):
 
 
 def get_max(humidities):
-    max_humidity = max(humidities, key=lambda t: t.value)
+    max_humidity: Humidity = max(humidities, key=lambda t: t.value)
     return max_humidity
 
 def get_min(humidities):
-    min_humidity = min(humidities, key=lambda t: t.value)
+    min_humidity: Humidity = min(humidities, key=lambda t: t.value)
     return min_humidity
 
 

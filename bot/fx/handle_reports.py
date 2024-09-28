@@ -4,16 +4,16 @@ from bot.fx.handle_charts import h_chart, t_chart, send_chart
 from bot.bot_data import bot
 
 
-async def send_h_report(chat_id:int, h_chart:str, max_h:float, min_h:float) -> None:
+async def send_h_report(chat_id:int, h_chart:str, max_h:Temperature, min_h:Temperature) -> None:
     """Send Humidity Report"""
-    
+
     print("Enviando reporte de humedad")
     await bot.send_message(chat_id, "Gráfica de Humedad")
     await send_chart(h_chart, chat_id)
     await bot.send_message(chat_id, f"Máxima: {max_h.value}% | Mínima: {min_h.value}%")
 
 
-async def send_t_report(chat_id: int, t_chart: str, max_t: float, min_t: float) -> None:
+async def send_t_report(chat_id: int, t_chart: str, max_t: Temperature, min_t: Temperature) -> None:
     """Send Temperature Report"""
 
     print("Enviando reporte de temperatura")
