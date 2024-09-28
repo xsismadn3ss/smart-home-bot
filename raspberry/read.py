@@ -1,5 +1,5 @@
 import asyncio
-from .sensor_config import sensor, pin, Adafruit_DHT
+from raspberry.sensor_config import sensor, pin, Adafruit_DHT
 
 async def read_dht() -> tuple:
     await asyncio.sleep(0.5)

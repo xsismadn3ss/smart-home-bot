@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlite3 import Cursor
+from aiosqlite import Cursor
 from data.functions.db_session import query
 import matplotlib.pyplot as plt
 from data.models import Humidity

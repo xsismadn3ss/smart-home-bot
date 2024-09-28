@@ -1,4 +1,4 @@
-import os
+from os import remove
 from bot.bot_data import bot
 from data import humidity_queries, temperature_queries
 from datetime import datetime
@@ -9,7 +9,7 @@ async def send_chart(path, chat_id):
     with open(path, "rb") as photo:
         print("enviando imagen")
         await bot.send_photo(chat_id, photo)
-        os.remove(path=path)
+        remove(path=path)
 
 def create_path(title):
     dt = datetime.now()

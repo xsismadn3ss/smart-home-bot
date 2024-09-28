@@ -7,7 +7,6 @@ from bot.fx.handle_reports import (
 )
 from data import humidity_queries, temperature_queries
 from .bot_data import bot
-from bot.fx import handle_charts
 
 
 @bot.message_handler(commands=["reports"])

@@ -1,9 +1,7 @@
 import asyncio
 from datetime import datetime
-from bot import *
 from bot.bot_data import bot
-from raspberry import *
-from raspberry.load_config import load_config
+from raspberry import read_dht, save_data, check_conditions, generateReports
 
 async def raspberry():
     print("Leyendo sensores...")
