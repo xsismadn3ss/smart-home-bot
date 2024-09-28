@@ -5,6 +5,7 @@ from raspberry.read import read_dht
 from raspberry.handle_data import save_data
 from raspberry.events import check_conditions, generateReports
 
+
 async def raspberry():
     print("Leyendo sensores...")
     i = 0
@@ -13,7 +14,8 @@ async def raspberry():
     while True:
         try:
             h, t = await read_dht()
-            t_list.append(t); h_list.append(h)
+            t_list.append(t)
+            h_list.append(h)
             if i == 5:
                 h_list, t_list, i = await save_data(h_list, t_list, i)
         except Exception as e:
@@ -21,23 +23,22 @@ async def raspberry():
             break
         i += 1
 
+
 async def reports():
     current_time = datetime.now()
     print(current_time.hour)
     await generateReports(current_time)
 
-async def bot_procces():
-    await bot.polling()
-
 
 async def main():
     print("Iniciando procesos...")
-    
+
     raspberry_task = asyncio.create_task(raspberry())
     reports_task = asyncio.create_task(reports())
-    bot_task = asyncio.create_task(bot_procces())
+    await bot.polling()
 
-    asyncio.gather(raspberry_task, reports_task, bot_task)
+    asyncio.gather(raspberry_task, reports_task)
+
 
 if __name__ == "__main__":
     print("Bot inicializado 🤖")
