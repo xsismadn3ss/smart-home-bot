@@ -4,7 +4,7 @@ def avg(mesures):
     avg = sum(mesures)/ len(mesures)
     return avg
 
-async def save_data(h_list, t_list):
+async def save_data(h_list, t_list, i):
         print("Guardando datos...")
         h_avg = avg(h_list)
         t_avg = avg(t_list)
@@ -14,4 +14,4 @@ async def save_data(h_list, t_list):
         h_list = []
         t_list = []
         i = 0
-        return h_list, t_list
+        return h_list, t_list, i
