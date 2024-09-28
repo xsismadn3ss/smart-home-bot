@@ -48,6 +48,10 @@ def get_max(humidities):
     max_humidity = max(humidities, key=lambda t: t.value)
     return max_humidity
 
+def get_min(humidities):
+    min_humidity = min(humidities, key=lambda t: t.value)
+    return min_humidity
+
 
 def get_chart(humidities: list[Humidity], filename):
     dates = [h.time for h in humidities]

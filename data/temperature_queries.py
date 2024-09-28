@@ -48,6 +48,9 @@ async def get_max(temperatures):
     max_temperature = await max(temperatures, key=lambda t: t.value)
     return max_temperature
 
+async def get_min(temperatures):
+    min_temperature = await min(temperatures, key=lambda t: t.value)
+    return min_temperature
 
 def get_chart(temperatures: list[Temperature], filename):
     dates = [temp.time for temp in temperatures]
