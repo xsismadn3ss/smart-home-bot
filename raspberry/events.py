@@ -49,7 +49,7 @@ async def report_state(state: bool) -> None:
 
 async def generateReports(time: datetime):
 
-    if time.hour > 20 and load_config()["status"]["reports_sents"] == False:
+    if time.hour > 20 and load_config()["status"]["reports_sent"] == False:
         # load data
         h_data = await humidity_queries.get_from_today()
         t_data = await temperature_queries.get_from_today()
@@ -70,4 +70,5 @@ async def generateReports(time: datetime):
         # update config status
         await report_state(True)
 
-    await report_state(False)
+    elif time.hour > 0 and time.hour < 20:
+        await report_state(False)

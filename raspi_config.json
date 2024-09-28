@@ -1,6 +1,6 @@
 {
     "Model": "Model 2 B",
     "status": {
-        "reports_sent": true
+        "reports_sent": false
     }
 }
