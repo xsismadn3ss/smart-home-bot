@@ -17,28 +17,24 @@ async def raspberry():
             if i == 5:
                 await save_data(h_list, t_list)
                 i = 0
-
-            await check_conditions(h,t)
-            current_time = datetime.now()
-            print(current_time)
-            await generateReports(current_time)
-            
+            await check_conditions(h,t)            
 
         except Exception as e:
             print(e)
             break
         i += 1
 
-async def bot_procces():
-    await bot.polling()
-
+async def check_time():
+    current_time = datetime.now()
+    print(current_time)
+    await generateReports(current_time)
 
 
 async def main():
     print("Iniciando procesos...")
     raspberry_task = asyncio.create_task(raspberry())
-    bot_task = asyncio.create_task(bot_procces())
-    asyncio.gather(raspberry_task, bot_task)
+    asyncio.gather(raspberry_task)
+    await bot.polling()
 
 if __name__ == "__main__":
     print("Bot inicializado 🤖")
