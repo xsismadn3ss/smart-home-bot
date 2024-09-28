@@ -16,9 +16,6 @@ async def raspberry():
             t_list.append(t); h_list.append(h)
             if i == 5:
                 h_list, t_list, i = await save_data(h_list, t_list)
-
-            # await check_conditions(h,t)            
-
         except Exception as e:
             print(e)
             break
@@ -26,7 +23,7 @@ async def raspberry():
 
 async def reports():
     current_time = datetime.now()
-    print(current_time)
+    print(current_time.hour)
     await generateReports(current_time)
 
 
