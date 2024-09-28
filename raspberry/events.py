@@ -30,7 +30,7 @@ async def check_conditions(h: float, t: float):
         for user in users:
             await bot.send_message(
                 user.chat_id,
-                "Humedad: {h}%\nTemperatura: {t}° C\n Es posible que tengas una sensación térmica mayor a la temperatura ambiente debido al exceso de humedad",
+                f"Humedad: {h}%\nTemperatura: {t}° C\n Es posible que tengas una sensación térmica mayor a la temperatura ambiente debido al exceso de humedad",
             )
         return
 
@@ -63,9 +63,9 @@ async def generateReports(time: datetime):
 
         # send reports
         for user in users:
-            await send_h_report(user.chat_id, h_chart, max_h, min_h)
+            await send_h_report(user.chat_id, h_chart, max_h.value, min_h.value)
             await bot.send_message(user.chat_id, "---------------")
-            await send_t_report(user.chat_id, t_chart, max_t, min_t)
+            await send_t_report(user.chat_id, t_chart, max_t.value, min_t.value)
 
         # update config status
         await report_state(True)
