@@ -44,12 +44,12 @@ async def get_from_today(conn, cursor: Cursor):
     return serialize(data)
 
 
-async def get_max(temperatures):
-    max_temperature = await max(temperatures, key=lambda t: t.value)
+def get_max(temperatures):
+    max_temperature = max(temperatures, key=lambda t: t.value)
     return max_temperature
 
-async def get_min(temperatures):
-    min_temperature = await min(temperatures, key=lambda t: t.value)
+def get_min(temperatures):
+    min_temperature = min(temperatures, key=lambda t: t.value)
     return min_temperature
 
 def get_chart(temperatures: list[Temperature], filename):
