@@ -5,6 +5,7 @@ async def read_dht() -> tuple:
     await asyncio.sleep(0.5)
     try:   
         humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+        print(f"status: {humidity}%, {temperature}°C")
         return humidity, temperature
     except Exception as e:
         print(e)
