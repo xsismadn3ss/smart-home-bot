@@ -1,5 +1,5 @@
 import asyncio
-from raspberry import read_dht
+from raspberry.read import read_dht
 
 
 # async def read_sensor():
