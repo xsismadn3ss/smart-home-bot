@@ -5,7 +5,6 @@ from datetime import datetime
 
 async def send_chart(path, chat_id):
     print("accediendo a imagen")
-
     with open(path, "rb") as photo:
         print("enviando imagen")
         await bot.send_photo(chat_id, photo)

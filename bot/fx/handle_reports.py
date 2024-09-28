@@ -6,13 +6,17 @@ from bot.bot_data import bot
 
 async def send_h_report(chat_id:int, h_chart:str, max_h:float, min_h:float) -> None:
     """Send Humidity Report"""
+    
+    print("Enviando reporte de humedad")
     await bot.send_message(chat_id, "Gráfica de Humedad")
     await send_chart(h_chart, chat_id)
     await bot.send_message(chat_id, f"Máxima: {max_h.value}% | Mínima: {min_h.value}%")
 
 
-async def send_t_report(chat_id, t_chart, max_t, min_t) -> None:
+async def send_t_report(chat_id: int, t_chart: str, max_t: float, min_t: float) -> None:
     """Send Temperature Report"""
+
+    print("Enviando reporte de temperatura")
     await bot.send_message(chat_id, "Gráfica de Temperatua")
     await send_chart(t_chart, chat_id)
     await bot.send_message(chat_id, f"Máxima: {max_t.value}° C | Mínima: {min_t.value}° C")
