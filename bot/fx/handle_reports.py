@@ -7,7 +7,7 @@ from bot.bot_data import bot
 async def send_h_report(chat_id:int, h_chart:str, max_h:Humidity, min_h: Humidity) -> None:
     """Send Humidity Report"""
     print(max_h)
-    print(min)
+    print(min_h)
 
     print("Enviando reporte de humedad")
     await bot.send_message(chat_id, "Gráfica de Humedad")
@@ -17,6 +17,8 @@ async def send_h_report(chat_id:int, h_chart:str, max_h:Humidity, min_h: Humidit
 
 async def send_t_report(chat_id: int, t_chart: str, max_t: Temperature, min_t: Temperature) -> None:
     """Send Temperature Report"""
+    print(max_t)
+    print(min_t)
 
     print("Enviando reporte de temperatura")
     await bot.send_message(chat_id, "Gráfica de Temperatua")
