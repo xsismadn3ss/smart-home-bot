@@ -48,8 +48,11 @@ async def report_state(state: bool) -> None:
 
 
 async def generateReports(time: datetime):
+    """send reports tu users automatically"""
     data = await load_config()
-    if time.hour > 20 and data["status"]["reports_sent"] == False:
+    if (
+        (time.hour > 4 and time.hour < 6) or (time.hour > 11 and time.hour < 14)
+    ) and data["status"]["reports_sent"] == False:
         # load data
         h_data = await humidity_queries.get_from_today()
         t_data = await temperature_queries.get_from_today()
@@ -70,5 +73,5 @@ async def generateReports(time: datetime):
         # update config status
         await report_state(True)
 
-    elif time.hour > 0 and time.hour < 20:
+    else:
         await report_state(False)
