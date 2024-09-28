@@ -53,7 +53,13 @@ async def send_reports():
 
     # create reports
     h_chart, max_h, min_h = await humidity_report(h_data=h_data)
+    print(type(h_chart))
+    print(type(max_h))
+    print(type(min_h))
     t_chart, max_t, min_t = await temperature_report(t_data=t_data)
+    print(type(t_chart))
+    print(type(max_t))
+    print(type(min_t))
 
     # load user
     users: list[User] = await user_queries.get_all()
@@ -69,7 +75,7 @@ async def generateReports(time: datetime):
     """send reports tu users automatically"""
     data = await load_config()
     status = data["status"]["reports_sent"]
-    
+
     if time.hour >= 3 and time.hour <= 5 and status == False:
         await send_reports()
         await report_state(True)
