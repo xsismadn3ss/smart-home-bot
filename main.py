@@ -15,7 +15,7 @@ async def raspberry():
             h, t = await read_dht()
             t_list.append(t); h_list.append(h)
             if i == 5:
-                h_list, t_list, i = await save_data(h_list, t_list)
+                h_list, t_list, i = await save_data(h_list, t_list, i)
         except Exception as e:
             print(e)
             break
