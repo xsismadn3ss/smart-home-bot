@@ -70,5 +70,5 @@ async def generateReports(time: datetime):
         # update config status
         await report_state(True)
 
-    elif time.hour > 0 and time.hour < 20:
+    elif time.hour > 4 and time.hour < 20:
         await report_state(False)
