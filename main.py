@@ -34,7 +34,7 @@ async def main():
     print("Iniciando procesos...")
     raspberry_task = asyncio.create_task(raspberry())
     reports_task = asyncio.create_task(reports())
-    asyncio.gather(raspberry_task, reports)
+    asyncio.gather(raspberry_task, reports_task)
     await bot.polling()
 
 if __name__ == "__main__":
