@@ -1,6 +1,7 @@
 import asyncio
 from datetime import datetime
 from bot.bot_data import bot
+from bot import *
 from raspberry.read import read_dht
 from raspberry.handle_data import save_data
 from raspberry.events import check_conditions, generateReports
