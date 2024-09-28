@@ -4,6 +4,8 @@ from data.functions.db_session import query
 
 @query
 async def daily_average(conn, cursor: Cursor):
+    """Save daily average of humidity and temperature values per day"""
+
     sqlcommand = """
         INSERT INTO Daily_Averages (avg_temperature, avg_humidity, date)
         SELECT AVG(T.value) AS avg_temperature, AVG(H.value) AS avg_humidity,
