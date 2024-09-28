@@ -14,4 +14,4 @@ async def save_data(h_list, t_list, i):
         h_list = []
         t_list = []
         i = 0
-        return h_list, t_list, count
+        return h_list, t_list
