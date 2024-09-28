@@ -13,15 +13,11 @@ async def raspberry():
     h_list = []
     t_list = []
     while True:
-        time = datetime.now()
-        print("Hora actual: {}:{}:{}".format(time.hour, time.minute, time.second))
-        await generateReports(time)
-        
         try:
             h, t = await read_dht()
             t_list.append(t)
             h_list.append(h)
-            if i == 20:
+            if i == 40:
                 h_list, t_list, i = await save_data(h_list, t_list, i)
 
         except Exception as e:
@@ -32,7 +28,6 @@ async def raspberry():
 
 async def reports():
     current_time = datetime.now()
-    print(current_time.hour)
     await generateReports(current_time)
     await asyncio.sleep(5)
     reports()
@@ -42,10 +37,10 @@ async def main():
     print("Iniciando procesos...")
 
     raspberry_task = asyncio.create_task(raspberry())
-    # reports_task = asyncio.create_task(reports())
+    reports_task = asyncio.create_task(reports())
     await bot.polling()
 
-    # asyncio.gather(raspberry_task, reports_task)
+    asyncio.gather(raspberry_task, reports_task)
 
 
 if __name__ == "__main__":
