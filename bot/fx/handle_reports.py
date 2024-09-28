@@ -31,8 +31,8 @@ async def humidity_report(h_data: list[Humidity]) -> tuple[str, float, float]:
     ```
     """
     humidity_chart = await h_chart(h_data)
-    max_h = await humidity_queries.get_max(h_data)
-    min_h = await humidity_queries.get_min(h_data)
+    max_h = humidity_queries.get_max(h_data)
+    min_h = humidity_queries.get_min(h_data)
     return humidity_chart, max_h, min_h
 
 
