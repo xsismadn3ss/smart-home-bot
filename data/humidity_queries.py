@@ -6,6 +6,8 @@ from data.models import Humidity
 
 
 def serialize(mesures):
+    """serialize humidity query into an Humidity instance"""
+
     if mesures is None:
         return None
 
@@ -23,6 +25,14 @@ def serialize(mesures):
 
 @query
 async def insert(conn, cursor: Cursor, value):
+    """Save value
+
+    Args:
+        conn (Connection): connection string
+        cursor (Cursor): cursor object to execute queries
+        value (float): humidity value
+    """
+
     sqlcommnad = "INSERT INTO Humidity (value, date) values (?, ?)"
     current_time = datetime.now().isoformat()
     await cursor.execute(sqlcommnad, (value, current_time))
