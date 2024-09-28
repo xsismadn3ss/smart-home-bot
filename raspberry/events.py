@@ -44,7 +44,7 @@ async def report_state(state: bool) -> None:
 
     data["status"]["reports_sent"] = state
     with open(config_path, "w") as f:
-        json.dump(data, config_path, indent=4)
+        json.dump(data, f, indent=4)
 
 
 async def generateReports(time: datetime):
