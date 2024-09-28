@@ -3,12 +3,12 @@ from bot.bot_data import bot
 from data import humidity_queries, temperature_queries
 from datetime import datetime
 
-async def send_chart(path, message):
+async def send_chart(path, chat_id):
     print("accediendo a imagen")
 
     with open(path, "rb") as photo:
         print("enviando imagen")
-        await bot.send_photo(message.chat.id, photo)
+        await bot.send_photo(chat_id, photo)
         os.remove(path=path)
 
 def create_path(title):
@@ -16,8 +16,8 @@ def create_path(title):
     path = f"{title}_{dt.year}_{dt.month}_{dt.day}_{dt.hour}{dt.minute}{dt.second}.png"
     return path
 
-async def h_chart():
-    data = await humidity_queries.get_from_today()
+async def h_chart(humidities):
+    data = humidities
     print("analizando datos de humedad")
 
     if data is not None:
@@ -27,8 +27,8 @@ async def h_chart():
     else:
         return None
 
-async def t_chart():
-    data = await temperature_queries.get_from_today()
+async def t_chart(temperatures):
+    data = temperatures
     print("analizando datos de temperatura")
 
     if data is not None:
