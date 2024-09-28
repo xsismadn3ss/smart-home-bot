@@ -56,7 +56,7 @@ async def generateReports(time: datetime):
 
         # create reports
         h_chart, max_h, min_h = await humidity_report(h_data=h_data)
-        t_chart, max_t, min_t = await temperature_report(h_data=h_data)
+        t_chart, max_t, min_t = await temperature_report(t_data=t_data)
 
         # load user
         users: list[User] = await user_queries.get_all()
