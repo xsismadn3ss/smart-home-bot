@@ -51,7 +51,7 @@ async def generateReports(time: datetime):
     """send reports tu users automatically"""
     data = await load_config()
     if (
-        (time.hour > 4 and time.hour < 6) or (time.hour > 11 and time.hour < 14)
+        (time.hour >= 4 and time.hour <= 6) or (time.hour >= 11 and time.hour <= 14)
     ) and data["status"]["reports_sent"] == False:
         # load data
         h_data = await humidity_queries.get_from_today()
