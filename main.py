@@ -29,6 +29,8 @@ async def reports():
     current_time = datetime.now()
     print(current_time.hour)
     await generateReports(current_time)
+    await asyncio.sleep(5)
+    reports()
 
 
 async def main():
