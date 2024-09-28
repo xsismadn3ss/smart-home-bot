@@ -26,13 +26,18 @@ async def reports():
     print(current_time.hour)
     await generateReports(current_time)
 
+async def bot_procces():
+    await bot.polling()
+
 
 async def main():
     print("Iniciando procesos...")
+    
     raspberry_task = asyncio.create_task(raspberry())
     reports_task = asyncio.create_task(reports())
-    asyncio.gather(raspberry_task, reports_task)
-    await bot.polling()
+    bot_task = asyncio.create_task(bot_procces())
+
+    asyncio.gather(raspberry_task, reports_task, bot_task)
 
 if __name__ == "__main__":
     print("Bot inicializado 🤖")
