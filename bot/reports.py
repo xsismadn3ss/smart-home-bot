@@ -1,4 +1,11 @@
 from bot.fx.check_login import login_required
+from bot.fx.handle_reports import (
+    humidity_report,
+    send_h_report,
+    send_t_report,
+    temperature_report,
+)
+from data import humidity_queries, temperature_queries
 from .bot_data import bot
 from bot.fx import handle_charts
 
@@ -6,16 +13,17 @@ from bot.fx import handle_charts
 @bot.message_handler(commands=["reports"])
 @login_required
 async def reports(message):
-    h = await handle_charts.h_chart()
-    t = await handle_charts.t_chart()
     chatid = message.chat.id
+    h_data = await humidity_queries.get_from_today()
+    t_data = await temperature_queries.get_from_today()
 
-    if h is not None:
-        await bot.send_message(chatid, "Grafica de humedad")
-        await handle_charts.send_chart(h, message)
-    if t is not None:
-        await bot.send_message(chatid, "Grafica de temperatura")
-        await handle_charts.send_chart(t, message)
+    if h_data is not None:
+        h_chart, max_h, min_h = await humidity_report(h_data=h_data)
+        await send_h_report(chat_id=chatid, h_chart=h_chart, min_h=min_h, max_h=max_h)
+
+    if t_data is not None:
+        t_chart, max_t, min_t = await temperature_report(t_data=t_data)
+        await send_t_report(chat_id=chatid, t_chart=t_chart, max_t=max_t, min_t=min_t)
 
     else:
         await bot.send_message(
