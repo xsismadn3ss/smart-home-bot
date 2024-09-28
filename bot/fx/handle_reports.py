@@ -49,6 +49,6 @@ async def temperature_report(t_data: list[Temperature]) -> tuple[str, float, flo
     ```
     """
     temperature_chart = await t_chart(t_data)
-    max_t = await temperature_queries.get_max(t_data)
-    min_t = await temperature_queries.get_min(t_data)
+    max_t = temperature_queries.get_max(t_data)
+    min_t = temperature_queries.get_min(t_data)
     return temperature_chart, max_t, min_t
